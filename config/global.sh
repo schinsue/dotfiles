@@ -136,16 +136,13 @@ function psr {
   ps aux | grep -v "Pow" | grep "[$FIRST]$REST"
 }
 
-# function git {
-#   args="$@";
-#   if [[ -z $(grep "commit" <<< "$args") ]]; then
-#     /usr/local/bin/git "$@"
-#   else
-#     message=$(echo "$args" | ruby -e 'ARGF.read.split(/\s/).find { |arg| arg =~ /\A-[^-]/ ? arg.include?("m") : arg.include?("--message") } ? exit(1) : exit(0)')
-#     if [[ $? == 0 ]]; then
-#       /usr/local/bin/git "$@"
-#     else
-#       echo "Don't use -m."
-#     fi
-#   fi
-# }
+function lzp() {
+    git add .
+    git commit -a -m "$1"
+    git push
+}
+# Make directory and change into it.
+
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
