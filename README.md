@@ -30,7 +30,7 @@ These are the steps for installing a clean machine:
 
 5. Install the dotfiles:
 
-        git clone https://github.com/iain/dotfiles.git ~/.dotfiles
+        git clone https://github.com/schinsue/dotfiles.git ~/.dotfiles
         cd ~/.dotfiles
         ./script/install
 
@@ -141,6 +141,8 @@ Here are the ones I use on a daily basis:
 * `be` - `bundle exec`
 * `rdm` - `rake db:migrate db:test:prepare`
 * `l` - `ls -FhAlo`
+* `mcd` - Make dir and change into it
+* `lzp` - git add . --> git commit %arg% --> git push all in one command
 
 ## Credits
 
