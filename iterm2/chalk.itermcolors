@@ -1,13 +1,3 @@
-Skip to content
-Personal Open source Business Explore
-Sign upSign inPricingBlogSupport
- Watch 1  Star 7  Fork 1 achalv/chalk
- Code  Issues 0  Pull requests 0  Pulse  Graphs
-Branch: master Find file Copy pathchalk/chalk.itermcolors
-aeb620b  on Sep 24, 2014
-@achalv achalv [Add] chalk.itermcolors
-1 contributor
-RawBlameHistory     214 lines (213 sloc)  5.34 KB
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -221,5 +211,3 @@ RawBlameHistory     214 lines (213 sloc)  5.34 KB
 	</dict>
 </dict>
 </plist>
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
