@@ -30,7 +30,6 @@ export NODE_PATH="/usr/local/lib/node_modules"
 
 # Our own bin directory is more important than the rest
 export PATH=$HOME/.dotfiles/bin:$PATH
-export PATH=$HOME/.bin:$PATH
 
 # General aliases
 alias l='ls -FhAlo'
@@ -41,7 +40,6 @@ alias tf='tail -f -n 100'
 alias less='less -R' # color codes in less
 alias m='mvim --remote-silent' # open file in existing mvim
 alias grep='grep --colour=always'
-alias g='git'
 
 # Ruby aliases
 alias rdm='rake db:migrate db:test:prepare'
@@ -56,15 +54,12 @@ alias guard='bundle exec guard'
 alias fs='foreman start'
 
 # Git aliases
-alias c='git commit'
-alias p='git push'
 alias cdb='base=$(git rev-parse --show-cdup) && cd $base'
 alias st='git status'
 alias status='git status'
 alias co='git checkout'
 alias checkout='git checkout'
-alias ci='git commit'
-alias commit='echo "Use c"'
+alias commit='git commit'
 alias amend='git commit --amend'
 alias up='git up'
 alias upstash='git stash && git pull --ff-only && git stash pop'
@@ -81,7 +76,8 @@ alias f='git fetch'
 alias fetch='git fetch'
 alias gf='git fetch && git status'
 alias push='git push'
-alias po='powder open'
+alias add='git add .'
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 
 function r() {
