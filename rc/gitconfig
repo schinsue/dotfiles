@@ -51,3 +51,6 @@
   insteadOf = heroku:
 [credential]
   helper = osxkeychain
+[user]
+	email = s.chinsue@gmail.com
+	name = Sergio Chin-Sue

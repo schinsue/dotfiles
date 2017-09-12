@@ -18,6 +18,7 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 
 # Paths
 export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin/scripts:$PATH"
 if [[ -d "$HOME/.rvm/bin" ]]; then
   export PATH=$PATH:$HOME/.rvm/bin
 fi
