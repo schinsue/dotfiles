@@ -9,7 +9,7 @@ Here are the settings I use.
 * ZSH
 * Vim
 
-## Installation
+## Installation (10 simple steps to enlightenment)
 
 These are the steps for installing a clean machine:
 
@@ -22,13 +22,15 @@ These are the steps for installing a clean machine:
 
         brew install zsh git macvim par wget libyaml the_silver_searcher tree tmux
 
-4. Install a recent Ruby version:
+4. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+5. Install a recent Ruby version:
 
         brew install rbenv ruby-build
         rbenv install 2.2.3
         rbenv global 2.2.3
 
-5. Install the dotfiles:
+6. Install the dotfiles:
 
         git clone https://github.com/schinsue/dotfiles.git ~/.dotfiles
         cd ~/.dotfiles
@@ -36,7 +38,7 @@ These are the steps for installing a clean machine:
 
     This will backup any previous dotfiles you have.
 
-6. Configure iTerm2:
+7. Configure iTerm2:
 
     * Open iTerm2.
     * Go to the Preferences (⌘,)
@@ -45,7 +47,7 @@ These are the steps for installing a clean machine:
       (replace "your_name" with your username, which you can verify by running `whoami`)
     * Restart iTerm2.
 
-7. Configure Git to use your own name:
+8. Configure Git to use your own name:
 
     Add and change these lines to `~/.dotfiles/config/personal.sh`:
 
@@ -54,7 +56,9 @@ These are the steps for installing a clean machine:
         export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
         export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 
-8. Shortcuts are documented here [tmux](https://github.com/gpakosz/.tmux)
+9. Shortcuts are documented here [tmux](https://github.com/gpakosz/.tmux)
+
+10. Celebrate!
 
 ## Config
 
