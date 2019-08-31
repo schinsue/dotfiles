@@ -29,6 +29,7 @@ Plugin 'wgibbs/vim-irblack'
 Plugin 'vim-scripts/tir_black'
 
 " Syntax & Language Support
+Plugin 'sheerun/vim-polyglot'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5-syntax.vim'
@@ -44,11 +45,16 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'isRuslan/vim-es6'
 Plugin 'mxw/vim-jsx'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Chiel92/vim-autoformat'
 
 " Other
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'csexton/trailertrash.vim'
-Plugin 'edsono/vim-matchit'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
@@ -123,6 +129,13 @@ set shiftwidth=2
 set smartindent
 set softtabstop=2
 set tabstop=2
+set autoindent
+
+syntax on " enable highlighting
+set number " enable line numbers
+filetype plugin on
+
+set backspace=indent,eol,start " let backspace delete over lines
 
 " Search
 set smartcase
@@ -234,6 +247,8 @@ map <leader>v :view %%
 map <leader>m :vsplit %%
 map <leader>n :split %%
 
+" Map nerdTree to ,ne
+nmap <leader>ne :NERDTree<cr>
 
 " Rspec.vim
 let g:rspec_runner = "os_x_iterm"
