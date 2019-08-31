@@ -20,7 +20,7 @@ These are the steps for installing a clean machine:
 
 3. Install some of the most often used programs:
 
-        brew install zsh git macvim par wget libyaml the_silver_searcher tree
+        brew install zsh git macvim par wget libyaml the_silver_searcher tree tmux
 
 4. Install a recent Ruby version:
 
@@ -54,7 +54,7 @@ These are the steps for installing a clean machine:
         export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
         export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 
-8. Celebrate!
+8. Shortcuts are documented here [tmux](https://github.com/gpakosz/.tmux)
 
 ## Config
 
