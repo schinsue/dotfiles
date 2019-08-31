@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>AppleScrollAnimationEnabled</key>
@@ -2349,7 +2351,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>2712 352 937 514 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1057 0 0 1920 1177 </string>
+	<string>0 0 1920 1177 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>2167 121 585 399 1920 0 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -3389,7 +3391,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>6EBF9EEE-A42B-4FDB-BBF8-3DB50ABBD899</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>26</integer>
+	<integer>28</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>589040517.30033302</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
