@@ -68,6 +68,8 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'guns/vim-clojure-static'
 Plugin 'luochen1990/rainbow'
 Plugin 'iain/vim-rspec'
+Plugin 'wincent/command-t'
+
 
 " Always last
 Plugin 'Lokaltog/vim-powerline'
@@ -249,6 +251,9 @@ map <leader>n :split %%
 
 " Map nerdTree to ,ne
 nmap <leader>ne :NERDTree<cr>
+
+" Map Autoformat to ,f
+nmap <leader>f :Autoformat<cr>
 
 " Rspec.vim
 let g:rspec_runner = "os_x_iterm"
