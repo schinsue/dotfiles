@@ -33,13 +33,10 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'othree/html5-syntax.vim'
-Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-haml'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/VimClojure'
-Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'elixir-lang/vim-elixir'
 
 Plugin 'pangloss/vim-javascript'
@@ -56,7 +53,6 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'csexton/trailertrash.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-abolish'
@@ -68,8 +64,10 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'guns/vim-clojure-static'
 Plugin 'luochen1990/rainbow'
 Plugin 'iain/vim-rspec'
-Plugin 'wincent/command-t'
-
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " Always last
 Plugin 'Lokaltog/vim-powerline'
@@ -134,7 +132,6 @@ set tabstop=2
 set autoindent
 
 syntax on " enable highlighting
-set number " enable line numbers
 filetype plugin on
 
 set backspace=indent,eol,start " let backspace delete over lines
@@ -159,6 +156,8 @@ let g:Powerline_symbols = 'fancy' " Use fancy symbols in vim-powerline
 
 set formatprg=par\ -w80\ -q
 
+let g:move_key_modifier = 'X'
+let NERDTreeHijackNetrw = 0 " Fix autoload session for startify
 
 " ==========================
 " AUTOCOMMANDS
@@ -233,6 +232,11 @@ inoremap <s-tab> <c-n>
 " ":Errors".
 cnoreabbrev E e
 
+" move selected lines up one line
+xnoremap <C-S-k>  :m-2<CR>gv=gv
+
+" move selected lines down one line
+xnoremap <C-S-j> :m'>+<CR>gv=gv"
 
 " Insert hex keys
 inoremap <silent> <F12> <ESC>:r ! ruby -r securerandom -e "print SecureRandom.hex(32)"<CR>kJ
@@ -255,15 +259,8 @@ nmap <leader>ne :NERDTree<cr>
 " Map Autoformat to ,f
 nmap <leader>f :Autoformat<cr>
 
-" Rspec.vim
-let g:rspec_runner = "os_x_iterm"
-map <Leader>t :w<cr>:call RunCurrentSpecFile()<cr>
-map <Leader>T :w<cr>:call RunNearestSpec()<cr>
-map <Leader>l :w<cr>:call RunLastSpec()<cr>
-map <Leader>r :w<cr>:call RunAllSpecs()<cr>
-
-" Custom functions
-map <leader>p :call PromoteToLet()<cr>
+" Map CtrlP to ,p
+nmap <leader>p :CtrlP<cr>
 
 " Align = signs
 nmap <Leader>a= :Tabularize /=<cr>
@@ -293,10 +290,6 @@ map <Leader><Leader>p :Git push<cr>
 map <Leader><Leader>f :Git fetch<cr>
 map <Leader><Leader>u :Git up<cr>
 
-" Open notes file
-map <Leader>q :split ~/Dropbox/notes.md<cr>
-
-
 
 " ==========================
 " FUNCTIONS
@@ -312,97 +305,6 @@ function! InsertTabWrapper()
   endif
 endfunction
 
-" Convert local variable to RSpec let block
-function! PromoteToLet()
-  :normal! dd
-  :exec '?^\s*describe\|context\|RSpec\.describe\>'
-  :normal! p
-  :.s/\(\w\+\)\s\+=\s\+\(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-
-" Aligns tables in cucumber, from tim pope: https://gist.github.com/tpope/287147
-function! s:AlignCucumberTables()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
-
-" Only enable in cucumber
-function! EnableCucumberTables()
-  inoremap <silent> <Bar>   <Bar><Esc>:call <SID>AlignCucumberTables()<cr>a
-endfunction
-au FileType cucumber call EnableCucumberTables()
-
-" Automatically align multiline hashes in Ruby (Ruby 1.9 syntax only).
-function! AlignRubyHashes()
-  " Only look for lines that start with a simple keyword, colon, space, and
-  " ending in a comma.
-  let p = '^\s*\w\+:\s.*,$'
-
-  " Don't do anything if there is no Tabularize, or there is no surrounding
-  " line that can be aligned with.
-  if exists(':Tabularize') && (getline(line('.')) =~# '^\s*\w\+:\s$') && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    " save current position because later command moves the cursor
-    let currentLine = line(".")
-    let currentCol = col(".")
-
-    call DoAlignRubyHashes()
-
-    " Since the current line cannot be aligned yet when it is too short, find
-    " a line to compare it with. This is either the previous line or the next
-    " line.
-    if (getline(currentLine-1) =~ p)
-      let compareLine = currentLine - 1
-    else
-      let compareLine = currentLine + 1
-    endif
-
-    " Calculate how many spaces to add.
-    let positionOfValues = strlen(matchstr(getline(compareLine), '^.*:\s\+'))
-    let missingSpaces = (positionOfValues - currentCol) + 1
-
-    " Add missing spaces
-    if missingSpaces > 0
-      exe currentLine.'s/$/'.repeat(' ', missingSpaces)
-    endif
-
-    " Set the cursor to the proper position
-    call cursor(currentLine, currentCol + missingSpaces)
-
-  endif
-endfunction
-
-function! DoAlignRubyHashes()
-  let p = '^\s*\w\+:\s.*,$'
-
-  " Calculate the range to act. Default Tabularize doesn't do this properly,
-  " because the range is determined by a different regex than the alignment
-  " regex.
-  let from = line('.')
-  while (getline(from - 1) =~ p)
-    let from -= 1
-  endwhile
-
-  let to = line('.')
-  while (getline(to + 1) =~ p)
-    let to += 1
-  endwhile
-
-  " Call Tabularize with the new range
-  exe from.','.to.'Tabularize/\(:.*\)\@<!\(:\s\)\zs/l1'
-  normal! 0
-
-endfunction
-
-" Align after colons, but only the first one in the line,
-" In normal mode, determine range automatically
-nmap <Leader>a: :call DoAlignRubyHashes()<cr>
 " In visual mode, the range is already fixed
 vmap <Leader>a: :Tabularize/\(:.*\)\@<!:\zs/l1<cr>gv
 
