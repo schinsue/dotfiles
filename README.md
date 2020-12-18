@@ -5,8 +5,8 @@
 
 Here are the settings I use.
 
-* Ruby
-* ZSH
+* Ruby / Elixir / Node
+* Tmux
 * Vim
 
 ## Installation (10 simple steps to enlightenment)
@@ -14,23 +14,7 @@ Here are the settings I use.
 These are the steps for installing a clean machine:
 
 1. Install [iTerm2](http://www.iterm2.com/)
-2. Install [Homebrew](http://mxcl.github.io/homebrew/):
-
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-3. Install some of the most often used programs:
-
-        brew install zsh git macvim par wget libyaml the_silver_searcher tree tmux
-
-4. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-
-5. Install a recent Ruby version:
-
-        brew install rbenv ruby-build
-        rbenv install 2.2.3
-        rbenv global 2.2.3
-
-6. Install the dotfiles:
+2. Install the dotfiles:
 
         git clone https://github.com/schinsue/dotfiles.git ~/.dotfiles
         cd ~/.dotfiles
@@ -38,16 +22,17 @@ These are the steps for installing a clean machine:
 
     This will backup any previous dotfiles you have.
 
-7. Configure iTerm2:
+3. Configure iTerm2:
 
     * Open iTerm2.
     * Go to the Preferences (⌘,)
     * In the General tab, check `Load preferences from a custom folder or URL`.
     * Fill in the text field to point to `/Users/your_name/.dotfiles/iterm2`.
       (replace "your_name" with your username, which you can verify by running `whoami`)
+    * In the Profiles tab Text and set Font to MesloLGS NF. Alternatively, type p10k configure and answer Yes when asked whether to install Meslo Nerd Font.
     * Restart iTerm2.
-
-8. Configure Git to use your own name:
+   
+4. Configure Git to use your own name:
 
     Add and change these lines to `~/.dotfiles/config/personal.sh`:
 
@@ -56,13 +41,16 @@ These are the steps for installing a clean machine:
         export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
         export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 
-9. Shortcuts are documented here [tmux](https://github.com/gpakosz/.tmux)
-
-10. Celebrate!
+5. Celebrate!
 
 ## Config
 
 Here are some more things you can do.
+
+### Tmux
+Tmux autostarts with oh-my-zsh.
+
+Shortcuts are documented here [tmux](https://github.com/gpakosz/.tmux)
 
 ### Vim
 
@@ -100,22 +88,7 @@ Add as many directories as you like.
 
 ### Fonts
 
-I'm using DejaVuSansMono as font. You can download it [here](http://dejavu-fonts.org/wiki/Download).
-
-Programmers can be very anal about fonts, so if you don't like it, feel free to use something
-different.
-
-My DejaVuSansMono, including the [powerline](https://github.com/Lokaltog/vim-powerline)
-patch is included for convenience.
-
-### More programs.
-
-For my own convenience, here are some extra apps I tend to want on my machine.
-
-    brew install mysql postgresql sqlite \
-      mercurial go elixir node \
-      imagemagick graphviz \
-      cloc htop-osx
+I'm using powerlevel10k as font: https://github.com/romkatv/powerlevel10k
 
 **NB** Don't forget to read the output and follow the instructions.
 

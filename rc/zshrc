@@ -1,14 +1,9 @@
-source ~/.dotfiles/config/local.zsh
-source ~/.dotfiles/config/tab_title.zsh
-source ~/.dotfiles/config/git_autocomplete.zsh
-source ~/.dotfiles/config/global.sh
-
-# Define the directories you store your projects in in
-#   ~/.dotfiles/script/personal.zsh
-#
-# PROJECT_PARENT_DIRS+=("$HOME/Projects")
-
-PROJECT_PARENT_DIRS=()
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 if [[ -f ~/.dotfiles/config/personal.zsh ]]; then
   source ~/.dotfiles/config/personal.zsh
@@ -18,36 +13,24 @@ if [[ -f ~/.dotfiles/config/personal.sh ]]; then
   source ~/.dotfiles/config/personal.sh
 fi
 
-for PARENT_DIR in ${PROJECT_PARENT_DIRS[@]} ; do
-  if [ -d "$PARENT_DIR" ]; then
-    for PROJECT_DIR in $(/bin/ls $PARENT_DIR); do
-      if [[ ! -z `which $PROJECT_DIR 2> /dev/null` ]]; then
-        if [ -d "$PARENT_DIR/$PROJECT_DIR" ]; then
-          alias "$PROJECT_DIR"="cd $PARENT_DIR/$PROJECT_DIR"
-        fi
-      fi
-    done
-  fi
-done
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/sergio/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="muse"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Auto start tmux
+ZSH_TMUX_AUTOSTART=true
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -68,7 +51,7 @@ ZSH_THEME="muse"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -99,11 +82,11 @@ ZSH_THEME="muse"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker aws asdf git-extras git-flow yarn npm)
+plugins=(osx zsh-autosuggestions zsh-syntax-highlighting asdf tmux git brew docker aws git-extras git-flow yarn npm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,3 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
