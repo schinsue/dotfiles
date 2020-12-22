@@ -36,7 +36,6 @@ BREW_PACKAGES=(
   "fd"			            # A replacement for find: https://github.com/sharkdp/fd
   "macvim"              # Editor
   "elixir"              # Elixir
-  "rust"                # Rust
   "the_silver_searcher" # Code-search similar to ack
   "rbenv"               # Ruby Env
   "ruby-build"          # Ruby build
