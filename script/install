@@ -104,6 +104,9 @@ case "$OSTYPE" in
     echo "Installing rbenv and ruby..."
     install_ruby
 
+    echo "Installing TPM for tmux..."
+    install_tmp
+
     ;;  # necessary after each case
 
   linux*)
