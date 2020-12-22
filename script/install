@@ -105,7 +105,7 @@ case "$OSTYPE" in
     install_ruby
 
     echo "Installing TPM for tmux..."
-    install_tmp
+    install_tpm
 
     ;;  # necessary after each case
 
