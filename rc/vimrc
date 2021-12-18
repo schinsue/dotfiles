@@ -75,8 +75,7 @@ filetype plugin indent on
 if has("gui_macvim")
   set antialias                      " Pretty
   set guioptions=Ace                 " No menubar, toolbar or scrollbars, as minimal as possible
-  set guifont=Dejavu\ Sans\ Mono:h15 " Get Dejavu Sans mono here: http://dejavu-fonts.org/
-  colorscheme onedark         " Pastel colors
+  colorscheme onedark                " Pastel colors
   set fuoptions=maxvert,maxhorz      " Fixes Full Screen on OSX
   " If you are on OSX Lion, and you hate Lion's native full screen, turn it off for macvim:
   "   defaults write org.vim.MacVim MMNativeFullScreen 0
@@ -157,12 +156,6 @@ autocmd BufReadPost *
 
 " Rename :W to :w
 command! W :w
-
-" Directly switch between open splitted windows
-map <C-J> 
-map <C-H>
-map <C-L>
-map <C-K>
 
 " FZF
 nmap <C-P> :FZF<CR>
