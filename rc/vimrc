@@ -125,11 +125,6 @@ let g:netrw_nobeval = 1
 " Autocomplete
 let g:UltiSnipsExpandTrigger="<c-x>"
 
-" Those balloon things are annoying as hell
-set noballooneval
-set balloondelay=100000
-setlocal balloonexpr=
-
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 let g:Powerline_symbols = 'fancy' " Use fancy symbols in vim-powerline
@@ -234,9 +229,9 @@ vmap <Leader>a{ :Tabularize /{<cr>gv
 vmap <Leader>a{ :Tabularize /{<cr>gv
 
 " Fugitive (Git)
-map <Leader><Leader>c :Gcommit<cr>
+map <Leader><Leader>c :Git commit<cr>
 map <Leader><Leader>b :Gblame<cr>
-map <Leader><Leader>s :Gstatus<cr>
+map <Leader><Leader>s :Git<cr>
 map <Leader><Leader>w :Gwrite<cr>
 map <Leader><Leader>p :Git push<cr>
 map <Leader><Leader>f :Git fetch<cr>
