@@ -113,7 +113,6 @@ set tabstop=2
 set autoindent
 
 syntax on " enable highlighting
-filetype plugin on
 
 set backspace=indent,eol,start " let backspace delete over lines
 
