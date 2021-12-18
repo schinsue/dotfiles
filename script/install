@@ -43,6 +43,7 @@ BREW_PACKAGES=(
   "python"              # Python
   "cmake"               # Make for YCM (vim)
   "ffmpeg"              # ffmpeg for converting gif/videos
+  "fzf"                 # fuzzy finder
 )
 
 source install_functions.sh
@@ -62,6 +63,10 @@ case "$OSTYPE" in
     if [[ $? != 0 ]]; then # if exit code is not zero --> brew not installed.
       echo "Homebrew is not installed; instaling now..."
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      
+      # To install useful key bindings and fuzzy completion:
+      # This is needed to make fzf work
+      $(brew --prefix)/opt/fzf/install
     else
       echo "Homebrew installed. moving on..."
     fi
