@@ -159,10 +159,10 @@ autocmd BufReadPost *
 command! W :w
 
 " Directly switch between open splitted windows
-map <C-J> <C-W>j
-map <C-H> <C-W>h
-map <C-L> <C-W>l
-map <C-K> <C-W>k
+map <C-J> 
+map <C-H>
+map <C-L>
+map <C-K>
 
 " FZF
 nmap <C-P> :FZF<CR>
