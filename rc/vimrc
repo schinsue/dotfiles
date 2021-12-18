@@ -49,7 +49,6 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'luochen1990/rainbow'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plugin 'junegunn/fzf.vim'
 Plugin 'mhinz/vim-startify'
@@ -60,7 +59,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Lokaltog/vim-powerline'
 
 call vundle#end()
-filetype plugin indent on
 
 if needsToInstallBundles == 1
   echo "\nInstalling plugins.\n"
@@ -90,7 +88,7 @@ end
 set vb t_vb=               " Turn off beep
 set lazyredraw             " Don't redraw during macro execution
 set synmaxcol=1024         " Stop syntax highlighting for long lines
-set number relativenumber  " Relative line numbering
+set number                 " Relative line numbering
 set nowrap                 " No wrapping by default
 set scrolloff=4            " Keep a few lines above and below current line
 set equalalways            " create equally sized splits
@@ -188,14 +186,10 @@ nnoremap <space> :
 vnoremap <space> :
 
 " Buffer Explorer opens with Ctrl+B
-nnoremap <C-B> :BufExplorer<cr>
+nnoremap <C-B> :Buffers<cr>
 
 " %% will become the directory of the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" Hooks up smart tab autocomplete behavior mentioned above
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
 
 " A common typo is ":E" when actually meaning ":e" and not ":Explore" or
 " ":Errors".
