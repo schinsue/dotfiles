@@ -64,6 +64,13 @@ Vim will automatically install itself when you start Vim for the first time.
 
 Delete (or move) your `~/.vim` directory to let it install.
 
+After plugins install run:
+
+    cd ~/.vim/bundle/YouCompleteMe
+    python3 install.py --all
+
+This is for autocomplete in VIM
+
 ### Personal Configuration
 
 You can put configuration options that are personal, like custom paths, and

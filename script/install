@@ -34,14 +34,15 @@ BREW_PACKAGES=(
   "diff-so-fancy"       # A replacement for diff: https://github.com/so-fancy/diff-so-fancy
   "ripgrep"             # A replacement for grep: https://github.com/BurntSushi/ripgrep
   "fd"			            # A replacement for find: https://github.com/sharkdp/fd
-  "macvim"              # Editor
   "elixir"              # Elixir
-  "the_silver_searcher" # Code-search similar to ack
   "rbenv"               # Ruby Env
   "ruby-build"          # Ruby build
   "postgresql"          # Postgresql
   "node"                # Node
   "go"                  # Go
+  "python"              # Python
+  "cmake"               # Make for YCM (vim)
+  "ffmpeg"              # ffmpeg for converting gif/videos
 )
 
 source install_functions.sh

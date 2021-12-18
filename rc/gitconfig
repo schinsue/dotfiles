@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/sergiochin-sue/.dotfiles/config/global_gitignore
+	excludesfile = /Users/sergiorachid/.gitignore
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [alias]
   co = checkout

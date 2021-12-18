@@ -25,46 +25,33 @@ Plugin 'Syntastic'
 Plugin 'tpope/vim-fugitive'
 
 " Colorschemes
-Plugin 'wgibbs/vim-irblack'
-Plugin 'vim-scripts/tir_black'
+Plugin 'rafi/awesome-vim-colorschemes'
 
 " Syntax & Language Support
 Plugin 'sheerun/vim-polyglot'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'othree/html5-syntax.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-haml'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-scripts/VimClojure'
-Plugin 'elixir-lang/vim-elixir'
-
-Plugin 'pangloss/vim-javascript'
-Plugin 'isRuslan/vim-es6'
-Plugin 'mxw/vim-jsx'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'Chiel92/vim-autoformat'
+
+" Autocomplete
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Valloric/YouCompleteMe'
 
 " Other
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'csexton/trailertrash.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'mileszs/ack.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'guns/vim-clojure-static'
 Plugin 'luochen1990/rainbow'
-Plugin 'iain/vim-rspec'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plugin 'junegunn/fzf.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -83,8 +70,6 @@ endif
 
 filetype plugin indent on
 
-
-
 " ==========================
 " SETTINGS
 " ==========================
@@ -93,20 +78,19 @@ if has("gui_macvim")
   set antialias                      " Pretty
   set guioptions=Ace                 " No menubar, toolbar or scrollbars, as minimal as possible
   set guifont=Dejavu\ Sans\ Mono:h15 " Get Dejavu Sans mono here: http://dejavu-fonts.org/
-  colorscheme ir_black               " Pastel colors
+  colorscheme onedark         " Pastel colors
   set fuoptions=maxvert,maxhorz      " Fixes Full Screen on OSX
   " If you are on OSX Lion, and you hate Lion's native full screen, turn it off for macvim:
   "   defaults write org.vim.MacVim MMNativeFullScreen 0
   " Press Ctrl+Cmd+F to go full screen
 else
-  colorscheme tir_black " Use Terminal version of ir_black
+  colorscheme onedark " Use Terminal version of ir_black
 end
 
 set vb t_vb=               " Turn off beep
 set lazyredraw             " Don't redraw during macro execution
-set synmaxcol=512          " Stop syntax highlighting for long lines
-set relativenumber         " Relative line numbering
-set number                 " Relative line numbering
+set synmaxcol=1024         " Stop syntax highlighting for long lines
+set number relativenumber  " Relative line numbering
 set nowrap                 " No wrapping by default
 set scrolloff=4            " Keep a few lines above and below current line
 set equalalways            " create equally sized splits
@@ -140,10 +124,10 @@ set backspace=indent,eol,start " let backspace delete over lines
 set smartcase
 set hlsearch
 
-let ruby_no_expensive = 1 " Differentiate between do..end and class..end is slow
-let ruby_operators = 0    " Highlight Ruby operators
-
 let g:netrw_nobeval = 1
+
+" Autocomplete
+let g:UltiSnipsExpandTrigger="<c-x>"
 
 " Those balloon things are annoying as hell
 set noballooneval
@@ -169,14 +153,6 @@ autocmd BufReadPost *
       \   exe "normal! g`\"" |
       \ endif
 
-" Format xml files
-au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-
-
-" Add rainbows and unicorns
-let g:rainbow_active = 1
-
-
 " ==========================
 " GENERAL KEY MAPPINGS
 " ==========================
@@ -184,21 +160,14 @@ let g:rainbow_active = 1
 " Rename :W to :w
 command! W :w
 
-" Use OSX pbpaste/pbcopy for F1/F2, for use in terminal
-nmap <F1> :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-imap <F1> <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-nmap <F2> :.w !pbcopy<cr><cr>
-vmap <F2> :w !pbcopy<cr><cr>
-
-" in insert mode, jj goes to normal mode
-" if you ever need to type jj for real, type it slowly, like on old school mobile phones
-inoremap jj <ESC>
-
 " Directly switch between open splitted windows
 map <C-J> <C-W>j
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 map <C-K> <C-W>k
+
+" FZF
+nmap <C-P> :FZF<CR>
 
 " pressing j or k in a long wrapped will put cursor down/up one visual line
 nnoremap j gj
@@ -212,7 +181,7 @@ nnoremap <cr> :nohlsearch<cr>
 
 " highlight the 100th character
 highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%81v', 140)
 
 " In normal mode, space will start command mode.
 nnoremap <space> :
@@ -238,9 +207,6 @@ xnoremap <C-S-k>  :m-2<CR>gv=gv
 " move selected lines down one line
 xnoremap <C-S-j> :m'>+<CR>gv=gv"
 
-" Insert hex keys
-inoremap <silent> <F12> <ESC>:r ! ruby -r securerandom -e "print SecureRandom.hex(32)"<CR>kJ
-
 " ==========================
 " LEADER KEYS
 " ==========================
@@ -259,8 +225,8 @@ nmap <leader>ne :NERDTree<cr>
 " Map Autoformat to ,f
 nmap <leader>f :Autoformat<cr>
 
-" Map CtrlP to ,p
-nmap <leader>p :CtrlP<cr>
+" Map Rg to ,p
+nmap <leader>p :Rg<cr>
 
 " Align = signs
 nmap <Leader>a= :Tabularize /=<cr>
@@ -289,21 +255,6 @@ map <Leader><Leader>w :Gwrite<cr>
 map <Leader><Leader>p :Git push<cr>
 map <Leader><Leader>f :Git fetch<cr>
 map <Leader><Leader>u :Git up<cr>
-
-
-" ==========================
-" FUNCTIONS
-" ==========================
-
-" Smart tab autocomplete behavior
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
 
 " In visual mode, the range is already fixed
 vmap <Leader>a: :Tabularize/\(:.*\)\@<!:\zs/l1<cr>gv

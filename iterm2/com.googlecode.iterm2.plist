@@ -2,10 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<true/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>Command</key>
 	<string>tmux</string>
 	<key>Default Bookmark Guid</key>
 	<string>65115CE6-B8ED-4B41-8ECD-A51B91F30035</string>
+	<key>DoubleReportScrollWheel</key>
+	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
@@ -334,6 +340,8 @@
 			<key>Description</key>
 			<string>Default</string>
 			<key>Disable Window Resizing</key>
+			<true/>
+			<key>Draw Powerline Glyphs</key>
 			<true/>
 			<key>Flashing Bell</key>
 			<false/>
@@ -665,6 +673,8 @@
 			<real>0.0</real>
 			<key>Mouse Reporting</key>
 			<true/>
+			<key>Mouse Reporting allow mouse wheel</key>
+			<true/>
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
@@ -672,7 +682,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>MesloLGS-NF-Regular 12</string>
+			<string>MesloLGMDZForPowerline-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -685,6 +695,8 @@
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
 			<integer>0</integer>
+			<key>Scrollback With Status Bar</key>
+			<true/>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -745,6 +757,10 @@
 			<string>/Users/sergiorachid</string>
 		</dict>
 	</array>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -778,11 +794,44 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
+	<key>SensitiveScrollWheel</key>
+	<false/>
+	<key>Snippets</key>
+	<array>
+		<dict>
+			<key>guid</key>
+			<string>c727135f7ac6fac12d6c4a923e9c06976155e727ac457598c57917b6bd5d9468</string>
+			<key>title</key>
+			<string>o9F44Qa6Nw/5fjrjJ6kN1bK/umoFG6JMLyovKsTA6yzuHlDHksR4M9Goe4ZI3kOQAz2qK6ho4H</string>
+			<key>value</key>
+			<string>o9F44Qa6Nw/5fjrjJ6kN1bK/umoFG6JMLyovKsTA6yzuHlDHksR4M9Goe4ZI3kOQAz2qK6ho4H</string>
+		</dict>
+		<dict>
+			<key>guid</key>
+			<string>78354DCA-5B68-4515-8A72-32253CA292A2</string>
+			<key>title</key>
+			<string>ssh-ed25519</string>
+			<key>value</key>
+			<string>ssh-ed25519</string>
+		</dict>
+		<dict>
+			<key>guid</key>
+			<string>8B037B45-B5D0-408C-8138-ED676B817B96</string>
+			<key>title</key>
+			<string>ujIdJSJWWxSB6cpDyh4CL7LVfMmvRf2twatUhwHSY4vPCrAFXG02QOUM/ZDNyvUWGVHYGl</string>
+			<key>value</key>
+			<string>ujIdJSJWWxSB6cpDyh4CL7LVfMmvRf2twatUhwHSY4vPCrAFXG02QOUM/ZDNyvUWGVHYGl</string>
+		</dict>
+	</array>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 </dict>
 </plist>
