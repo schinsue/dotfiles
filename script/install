@@ -44,6 +44,8 @@ BREW_PACKAGES=(
   "cmake"               # Make for YCM (vim)
   "ffmpeg"              # ffmpeg for converting gif/videos
   "fzf"                 # fuzzy finder
+  "pandoc"              # markdown preview for emacs
+  "emacs"               # emacs for doom
 )
 
 source install_functions.sh
@@ -112,6 +114,11 @@ case "$OSTYPE" in
     echo "Installing TPM for tmux..."
     install_tpm
 
+    echo "Installing doom compiler..."
+    git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+    ~/.emacs.d/bin/doom install
+    rm ~/.doom.d/init.el
+
     ;;  # necessary after each case
 
   linux*)
@@ -124,6 +131,10 @@ echo "Backup configs and copy/create symlinks for personal configs"
 
 mydir=`pwd`
 backup="$HOME/.dotfiles-backup-`date +%s`"
+
+# Copy doom config separately
+cp $mydir/doom/init.el $HOME/.doom.d/init.el
+echo "Copied doom init.el in the right place"
 
 # Backup the stuff and create symlinks
 for f in $mydir/rc/*; do

@@ -13,6 +13,8 @@ if [[ -f ~/.dotfiles/config/personal.sh ]]; then
   source ~/.dotfiles/config/personal.sh
 fi
 
+PATH="$HOME/.emacs.d/bin:$PATH"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -119,3 +121,7 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
