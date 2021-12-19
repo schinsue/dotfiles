@@ -134,6 +134,7 @@ backup="$HOME/.dotfiles-backup-`date +%s`"
 
 # Copy doom config separately
 cp $mydir/doom/init.el $HOME/.doom.d/init.el
+cp $mydir/doom/config.el $HOME/.doom.d/config.el
 echo "Copied doom init.el in the right place"
 
 # Backup the stuff and create symlinks
