@@ -11,16 +11,16 @@ Screenshot:
 
 Here are the settings I use.
 
-* Ruby / Elixir / Node
-* Tmux
-* Vim
+- Ruby / Elixir / Node
+- Tmux
+- Vim
 
 ## Installation (10 simple steps to enlightenment)
 
 These are the steps for installing a clean machine:
 
-1. Install [iTerm2](http://www.iterm2.com/)
-2. Install the dotfiles:
+1.  Install [iTerm2](http://www.iterm2.com/)
+2.  Install the dotfiles:
 
         git clone https://github.com/schinsue/dotfiles.git ~/.dotfiles
         cd ~/.dotfiles
@@ -28,17 +28,17 @@ These are the steps for installing a clean machine:
 
     This will backup any previous dotfiles you have.
 
-3. Configure iTerm2:
+3.  Configure iTerm2:
 
-    * Open iTerm2.
-    * Go to the Preferences (⌘,)
-    * In the General tab, check `Load preferences from a custom folder or URL`.
-    * Fill in the text field to point to `/Users/your_name/.dotfiles/iterm2`.
+    - Open iTerm2.
+    - Go to the Preferences (⌘,)
+    - In the General tab, check `Load preferences from a custom folder or URL`.
+    - Fill in the text field to point to `/Users/your_name/.dotfiles/iterm2`.
       (replace "your_name" with your username, which you can verify by running `whoami`)
-    * In the Profiles tab Text and set Font to MesloLGS NF. Alternatively, type p10k configure and answer Yes when asked whether to install Meslo Nerd Font.
-    * Restart iTerm2.
-   
-4. Configure Git to use your own name:
+    - In the Profiles tab Text and set Font to MesloLGS NF. Alternatively, type p10k configure and answer Yes when asked whether to install Meslo Nerd Font.
+    - Restart iTerm2.
+
+4.  Configure Git to use your own name:
 
     Add and change these lines to `~/.dotfiles/config/personal.sh`:
 
@@ -47,13 +47,14 @@ These are the steps for installing a clean machine:
         export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
         export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
 
-5. Celebrate!
+5.  Celebrate!
 
 ## Config
 
 Here are some more things you can do.
 
 ### Tmux
+
 Tmux autostarts with oh-my-zsh.
 
 Shortcuts are documented here [tmux](https://github.com/gpakosz/.tmux)
@@ -71,14 +72,21 @@ After plugins install run:
 
 This is for autocomplete in VIM
 
+### Doom
+
+Doom will be automatically installed, run these commands:
+
+    doom sync
+    doom doctor
+
 ### Personal Configuration
 
 You can put configuration options that are personal, like custom paths, and
 other environment variables in one of these files:
 
-* `config/personal.sh` (will be loaded in both Bash and ZSH)
-* `config/personal.zsh` (ZSH specific configuration)
-* `config/personal.bash` (Bash specific configuration)
+- `config/personal.sh` (will be loaded in both Bash and ZSH)
+- `config/personal.zsh` (ZSH specific configuration)
+- `config/personal.bash` (Bash specific configuration)
 
 ### Project aliases
 
@@ -115,24 +123,24 @@ Some Ruby related stuff:
 There are a lot of aliases in my dotfiles.
 Here are the ones I use on a daily basis:
 
-* `aa` - `git add --all && git status -sb`
-* `c` - `git commit`
-* `p` - `git push`
-* `st` - `git status`
-* `f` - `git fetch --all && git status`
-* `up` - `git pull --ff-only`
-* `upstash` - `git stash && git pull --ff-only && git stash pop`
-* `unstage` - an autocompletable version of `git reset HEAD --`
-* `co` - `git checkout`
-* `d` - `git diff`
-* `dc` - `git diff --cached`
-* `m` - `macvim --remote-silent`
-* `b` - a function that does `bundle check && bundle install` in a clever way
-* `be` - `bundle exec`
-* `rdm` - `rake db:migrate db:test:prepare`
-* `l` - `ls -FhAlo`
-* `mcd` - Make dir and change into it
-* `lzp` - git add . --> git commit %arg% --> git push all in one command
+- `aa` - `git add --all && git status -sb`
+- `c` - `git commit`
+- `p` - `git push`
+- `st` - `git status`
+- `f` - `git fetch --all && git status`
+- `up` - `git pull --ff-only`
+- `upstash` - `git stash && git pull --ff-only && git stash pop`
+- `unstage` - an autocompletable version of `git reset HEAD --`
+- `co` - `git checkout`
+- `d` - `git diff`
+- `dc` - `git diff --cached`
+- `m` - `macvim --remote-silent`
+- `b` - a function that does `bundle check && bundle install` in a clever way
+- `be` - `bundle exec`
+- `rdm` - `rake db:migrate db:test:prepare`
+- `l` - `ls -FhAlo`
+- `mcd` - Make dir and change into it
+- `lzp` - git add . --> git commit %arg% --> git push all in one command
 
 ## Credits
 
