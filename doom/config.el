@@ -35,8 +35,9 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-(setq mac-command-modifier      'super
-      ns-command-modifier       'super
+;; This is for emacs-mac - Makes cmd + option the same as meta key
+(setq mac-command-modifier      'meta
+      ns-command-modifier       'meta
       mac-option-modifier       'meta
       ns-option-modifier        'meta
       mac-right-option-modifier 'none
