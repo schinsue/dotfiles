@@ -1,131 +1,38 @@
 #!/bin/sh
-set -e
-set -u
 
 # Check the platform
-case "$OSTYPE" in
-  solaris*) echo "SOLARIS" ;;
-  darwin*)  echo "OSX" ;;
-  linux*)   echo "LINUX" ;;
-  bsd*)     echo "BSD" ;;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
-
-echo "-------------------------INSTALLATION BEGINNING-------------------------"
-# Make the Documents directory under HOME.
-if [ ! -d "$HOME/Projects" ]; then
-  mkdir $HOME/Projects
-  echo "-------------------------MADE 'Projects' DIR-------------------------"
-fi
-
 BREW_PACKAGES=(
   "bash"                # might as well get an updated terminal shell
-  "git"                 # version control https://git-scm.com/
-  "gcc"                 # gnu compiler collection https://gcc.gnu.org/
-  "tmux"                # window management https://tmux.github.io/
-  "wget"                # curl alternative https://www.gnu.org/software/wget/
-  "imagemagick"         # image processing library
-  "gnu-sed"             # get "standard" sed that is used on Linux.
-  "tree"                # get the standard "tree" command on Linux.
-  "gnu-sed"             # get standard sed from Linux.
+  "cmake"               # Make for YCM (vim)
+  "diff-so-fancy"       # A replacement for diff: https://github.com/so-fancy/diff-so-fancy
+  "elixir"              # Elixir
+  "emacs"               # emacs for doom
   "exa"                 # an enhanced, modern ls
   "exiftool"            # just in case
-  "zsh"                 # z-shell
-  "diff-so-fancy"       # A replacement for diff: https://github.com/so-fancy/diff-so-fancy
-  "ripgrep"             # A replacement for grep: https://github.com/BurntSushi/ripgrep
   "fd"			            # A replacement for find: https://github.com/sharkdp/fd
-  "elixir"              # Elixir
-  "rbenv"               # Ruby Env
-  "ruby-build"          # Ruby build
-  "postgresql"          # Postgresql
-  "node"                # Node
-  "go"                  # Go
-  "python"              # Python
-  "cmake"               # Make for YCM (vim)
   "ffmpeg"              # ffmpeg for converting gif/videos
   "fzf"                 # fuzzy finder
+  "gcc"                 # gnu compiler collection https://gcc.gnu.org/
+  "git"                 # version control https://git-scm.com/
+  "gnu-sed"             # get "standard" sed that is used on Linux.
+  "gnu-sed"             # get standard sed from Linux.
+  "go"                  # Go
+  "imagemagick"         # image processing library
+  "neovim"              # Neovim
+  "node"                # Node
   "pandoc"              # markdown preview for emacs
-  "emacs"               # emacs for doom
+  "postgresql"          # Postgresql
+  "python"              # Python
+  "rbenv"               # Ruby Env
+  "ripgrep"             # A replacement for grep: https://github.com/BurntSushi/ripgrep
+  "ruby-build"          # Ruby build
+  "tmux"                # window management https://tmux.github.io/
+  "tree"                # get the standard "tree" command on Linux.
+  "wget"                # curl alternative https://www.gnu.org/software/wget/
+  "zsh"                 # z-shell
 )
 
-source install_functions.sh
-
-# If OS is Mac OS X, then do the following:
-case "$OSTYPE" in
-  darwin*)
-    # Install xcode-select
-    xcode-select --install
-    echo "Waiting for xcode-select to install."
-    echo "Press any key to continue when xcode-select is installed."
-    read -n 1 -s
-
-    # Check to see if Homebrew is installed.
-    echo "checking to see if Homebrew is installed."
-    which -s brew
-    if [[ $? != 0 ]]; then # if exit code is not zero --> brew not installed.
-      echo "Homebrew is not installed; instaling now..."
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      
-      # To install useful key bindings and fuzzy completion:
-      # This is needed to make fzf work
-      $(brew --prefix)/opt/fzf/install
-    else
-      echo "Homebrew installed. moving on..."
-    fi
-
-    # Install homebrew packages that might not already be installed.
-    echo -e "\nInstalling packages from regular brew"
-    for pkg in "${BREW_PACKAGES[@]}"; do
-      if ! brew list -1 | grep -q "^${pkg}\$";
-      then
-        echo "Installing $pkg"
-        brew install "$pkg"
-      fi
-    done
-    echo "Homebrew and favorites successfully installed, moving on..."
-
-    # Change shell to Homebrew-installed bash shell
-    SHELL_PATH=/usr/local/bin/bash
-    if cat /etc/shells | grep $SHELL_PATH; then
-      echo $SHELL_PATH already in shells
-    else
-      echo "Adding $SHELL_PATH to shells, password required..."
-      echo $SHELL_PATH | sudo tee -a /etc/shells
-      echo "Added $SHELL_PATH to shells"
-    fi
-    # chsh -s $SHELL_PATH
-
-    echo "Installing Oh-my-zsh..."
-    # Install Oh-My-Zsh
-    install_ohmyzsh
-
-    echo "Installing zsh-autosuggestions..."
-    install_zsh_autosuggestions
-
-    echo "Installing zsh-syntax-highlighting..."
-    install_zsh_syntax_highlighting
-
-    echo "Installing powerlevel10k..."
-    install_powerlevel10k
-
-    echo "Installing rbenv and ruby..."
-    install_ruby
-
-    echo "Installing TPM for tmux..."
-    install_tpm
-
-    echo "Installing doom compiler..."
-    git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-    ~/.emacs.d/bin/doom install
-    rm ~/.doom.d/init.el
-
-    ;;  # necessary after each case
-
-  linux*)
-    echo "No Script yet for linux"
-
-    ;;  # Necessary after each case.
-esac
+#source install_functions.sh
 
 echo "Backup configs and copy/create symlinks for personal configs"
 
@@ -136,6 +43,10 @@ backup="$HOME/.dotfiles-backup-`date +%s`"
 cp $mydir/doom/init.el $HOME/.doom.d/init.el
 cp $mydir/doom/config.el $HOME/.doom.d/config.el
 echo "Copied doom init.el in the right place"
+
+# Copy nvim config 
+cp $mydir/nvim $HOME/.config/nvim
+echo "Copied nvim config in the right place"
 
 # Backup the stuff and create symlinks
 for f in $mydir/rc/*; do
@@ -150,7 +61,7 @@ for f in $mydir/rc/*; do
     cp -R $dest $backup/$file
   fi
   echo "Symlinking: .$file"
-  ln -fs $source $dest
+  ln -f -s $source $dest
 
 done
 
