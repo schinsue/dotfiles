@@ -122,7 +122,7 @@ cp $mydir/doom/config.el $HOME/.doom.d/config.el
 echo "Copied doom init.el in the right place"
 
 # Copy nvim config 
-cp $mydir/nvim $HOME/.config/nvim
+cp -R $mydir/nvim $HOME/.config/nvim
 echo "Copied nvim config in the right place"
 
 # Backup the stuff and create symlinks

@@ -2,13 +2,11 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights"})
+keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number"}) -- increment
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number"}) -- decrement
+keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
+keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
@@ -21,3 +19,15 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- Save file and quit
+keymap.set("n", "<leader>w", ":update<Return>", { desc = "Save file" })
+keymap.set("n", "<leader>q", ":quit<Return>", { desc = "Quit file" })
+keymap.set("n", "<leader>Q", ":qa<Return>", { desc = "Quit all" })
+
+-- Open Lazy/Mason
+keymap.set("n", "<leader>ll", ":Lazy<CR>", { desc = "Open Lazy" })
+keymap.set("n", "<leader>mm", ":Mason<CR>", { desc = "Open Mason" })
+
+-- Open Copilot suggestions
+keymap.set("n", "<leader>cc", ":Copilot panel<CR>", { desc = "Open Copilot suggestions" })

@@ -61,6 +61,11 @@ return {
           node_decremental = "<bs>",
         },
       },
+      query_linter = {
+        enable_linter = true,
+        use_virtual_text = true,
+        lint_events = { "BufWrite", "CursorHold" },
+      },
     })
   end,
 }
