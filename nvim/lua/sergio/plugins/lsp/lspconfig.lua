@@ -131,6 +131,13 @@ return {
           },
         })
       end,
+      ["elixirls"] = function()
+        -- configure elixir server
+        lspconfig.elixirls.setup({
+          capabilities = capabilities,
+          cmd = { "elixir-ls" },
+        })
+      end,
     })
   end,
 }
