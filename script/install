@@ -125,6 +125,10 @@ echo "Copied doom init.el in the right place"
 cp -R $mydir/nvim $HOME/.config/nvim
 echo "Copied nvim config in the right place"
 
+# Copy alacritty config
+cp -R $mydir/alacritty $HOME/.config/alacritty
+echo "Copied alacritty config in the right place"
+
 # Backup the stuff and create symlinks
 for f in $mydir/rc/*; do
 
