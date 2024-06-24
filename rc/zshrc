@@ -5,21 +5,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -f ~/.dotfiles/config/personal.zsh ]]; then
-  source ~/.dotfiles/config/personal.zsh
+if [[ -f $HOME/.dotfiles/config/personal.zsh ]]; then
+  source $HOME/.dotfiles/config/personal.zsh
 fi
 
-if [[ -f ~/.dotfiles/config/personal.sh ]]; then
-  source ~/.dotfiles/config/personal.sh
+if [[ -f $HOME/.dotfiles/config/personal.sh ]]; then
+  source $HOME/.dotfiles/config/personal.sh
 fi
 
-PATH="$HOME/.emacs.d/bin:$PATH"
+PATH="$HOME/.config/emacs/bin:$PATH"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -119,11 +119,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

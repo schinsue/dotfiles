@@ -4,6 +4,7 @@ return {
   config = function()
     require("catppuccin").setup({
       style = "night",
+      transparent_background = true,
       color_overrides = {
         mocha = {
           -- custom everforest dark hard port

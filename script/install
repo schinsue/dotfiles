@@ -32,7 +32,7 @@ BREW_PACKAGES=(
   "zsh"                 # z-shell
 )
 
-source install_functions.sh
+# source install_functions.sh
 
 # If OS is Mac OS X, then do the following:
 case "$OSTYPE" in
